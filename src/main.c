@@ -4,10 +4,12 @@
 
 #include <stdio.h>
 
-#include "cvector.h"
 #include "example-class.h"
+#include "cvector.h"
 
 #define EXAMPLE_COUNT (30)
+
+VECTOR_TEMPLATE(Example)
 
 int main(char**argv, int argc) {
 	Example example;
@@ -15,25 +17,25 @@ int main(char**argv, int argc) {
 	uint64_t count;
 
 	printf("\n");
-	printf("Activity: Test example calss\n");
+	printf("Activity: Test the example string class\n");
 
 	// Test we can create an object from our example class
-	example_construct_init(&example, "Hello World!");
+	Example_construct_init(&example, "Hello World!");
 	example_debug_print(&example);
 
 	printf("\n");
 	printf("Activity: Place an element in the vector\n");
 
 	// Create a new vector
-	Vector *vector = vector_new();
+	Vector(Example) *vector = vector_new(Example)();
 	
-	vector_debug_print_space(vector);
+	vector_debug_print_space(Example)(vector);
 
-	vector_push(vector, example);
+	vector_push(Example)(vector, example);
 
-	vector_debug_print_space(vector);
+	vector_debug_print_space(Example)(vector);
 
-	example = vector_get(vector, 0);
+	example = vector_get(Example)(vector, 0);
 	example_debug_print(&example);
 
 	printf("\n");
@@ -41,58 +43,58 @@ int main(char**argv, int argc) {
 
 	// Create a bunch of examples, push them to the vector
 	for (count = 0; count < EXAMPLE_COUNT; ++count) {
-		example_construct(&example);
+		Example_construct(&example);
 		example_sprintf(&example, "Hello time %lu", count);
-		vector_push(vector, example);
+		vector_push(Example)(vector, example);
 	}
 
-	vector_debug_print_space(vector);
+	vector_debug_print_space(Example)(vector);
 
 	printf("\n");
 	printf("Activity: Output contents of vector\n");
 
 	for (count = 0; count < EXAMPLE_COUNT; ++count) {
-		Example example = vector_get(vector, count);
+		Example example = vector_get(Example)(vector, count);
 		example_debug_print(&example);
 	}
 
-	vector_debug_print_space(vector);
+	vector_debug_print_space(Example)(vector);
 
 	printf("\n");
 	printf("Activity: Pop contents of vector\n");
 
 	for (count = 0; count < EXAMPLE_COUNT; ++count) {
-		Example example = vector_pop(vector);
+		Example example = vector_pop(Example)(vector);
 		example_debug_print(&example);
-		example_destruct(&example);
+		Example_destruct(&example);
 	}
 
-	vector_debug_print_space(vector);
+	vector_debug_print_space(Example)(vector);
 
 	printf("\n");
 	printf("Activity: Remove last item from vector\n");
 
-	example = vector_pop(vector);
+	example = vector_pop(Example)(vector);
 	example_debug_print(&example);
-	example_destruct(&example);
+	Example_destruct(&example);
 
-	vector_debug_print_space(vector);
+	vector_debug_print_space(Example)(vector);
 
 	printf("\n");
 	printf("Activity: Push more examples to vector\n");
 
 	// Create a bunch of examples, push them to the vector
 	for (count = 0; count < EXAMPLE_COUNT; ++count) {
-		example_construct(&example);
+		Example_construct(&example);
 		example_sprintf(&example, "Hello time %lu", count);
-		vector_push(vector, example);
+		vector_push(Example)(vector, example);
 	}
 
-	vector_debug_print_space(vector);
+	vector_debug_print_space(Example)(vector);
 
 	printf("\n");
-	printf("Activity: Deleting the vector\n");
-	vector_delete(vector);
+	printf("Activity: Delete the vector\n");
+	vector_delete(Example)(vector);
 
 	return 0;
 }

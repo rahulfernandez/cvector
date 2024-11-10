@@ -9,11 +9,11 @@
 
 #include "example-class.h"
 
-void example_construct(Example *data) {
-	example_construct_init(data, "");
+void Example_construct(Example *data) {
+	Example_construct_init(data, "");
 }
 
-void example_construct_init(Example *data, char const * const string) {
+void Example_construct_init(Example *data, char const * const string) {
 	if (data) {
 		data->length = strlen(string);
 		data->string = malloc(sizeof(char) * data->length);
@@ -22,7 +22,7 @@ void example_construct_init(Example *data, char const * const string) {
 	}
 }
 
-void example_destruct(Example * data) {
+void Example_destruct(Example * data) {
 	if (data->string) {
 		printf("Destructing example class\n");
 		free(data->string);
@@ -35,7 +35,7 @@ Example *example_new() {
 	Example *data;
 	
 	data = malloc(sizeof(Example));
-	example_construct(data);
+	Example_construct(data);
 
 	return data;
 }
@@ -44,14 +44,14 @@ Example *example_new_init(char const * const string) {
 	Example *data;
 	
 	data = malloc(sizeof(Example));
-	example_construct_init(data, string);
+	Example_construct_init(data, string);
 
 	return data;
 }
 
 Example *example_delete(Example *data) {
 	if (data) {
-		example_destruct(data);
+		Example_destruct(data);
 
 		free(data);
 	}
