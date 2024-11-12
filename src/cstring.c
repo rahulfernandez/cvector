@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#include "example-class.h"
+#include "cstring.h"
 
 void String_construct(String *data) {
 	String_construct_init(data, "");

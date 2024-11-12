@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-#include "example-class.h"
+#include "cstring.h"
 #include "cvector.h"
 
 #define EXAMPLE_COUNT (30)
