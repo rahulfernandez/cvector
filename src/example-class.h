@@ -7,30 +7,30 @@
 
 #include <stdint.h>
 
-typedef struct _Example Example;
+typedef struct _String String;
 
 // We have to include the struct definition to use it in our vector
 // The vector needs to know how large the struct is
 
-struct _Example {
+struct _String {
 	uint64_t length;
 	char * string;
 };
 
-// Constructors and destructors use "Example"
+// Constructors and destructors use "String"
 
-void Example_construct(Example *data);
-void Example_construct_init(Example *data, char const * const string);
-void Example_destruct(Example * data);
+void String_construct(String *data);
+void String_construct_init(String *data, char const * const string);
+void String_destruct(String *data);
 
-// Class methods use "example"
+// Class methods use "string"
 
-Example *example_new();
-Example *example_new_init(char const * const string);
-Example *example_delete(Example *data);
+String *string_new();
+String *string_new_init(char const * const string);
+String *string_delete(String *data);
 
-void example_sprintf(Example *data, char const * format, ...);
-void example_debug_print(Example *data);
+void string_sprintf(String *data, char const * format, ...);
+void string_debug_print(String *data);
 
 #endif // #ifdef __EXAMPLE_CLASS_H__
 

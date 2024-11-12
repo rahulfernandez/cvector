@@ -9,61 +9,64 @@
 
 #include "example-class.h"
 
-void Example_construct(Example *data) {
-	Example_construct_init(data, "");
+void String_construct(String *data) {
+	String_construct_init(data, "");
 }
 
-void Example_construct_init(Example *data, char const * const string) {
+void String_construct_init(String *data, char const * const string) {
 	if (data) {
-		const uint64_t n = strlen(string);
+		const uint64_t length = strlen(string);
 
-		data->length = n;
-		data->string = malloc(sizeof(char) * (n+1));
-		strncpy(data->string, string, n+1);
+		data->length = length;
+		data->string = malloc(sizeof(char) * (length + 1));
+		strncpy(data->string, string, length + 1);
 	}
 }
 
-void Example_destruct(Example * data) {
+void String_destruct(String * data) {
 	if (data->string) {
-		printf("Destructing example class\n");
+		printf("Destructing string class\n");
 		free(data->string);
 		data->string = NULL;
 	}
 	data->length = 0;
 }
 
-Example *example_new() {
-	Example *data;
+String *string_new() {
+	String *data;
 	
-	data = malloc(sizeof(Example));
-	Example_construct(data);
+	data = malloc(sizeof(String));
+	String_construct(data);
 
 	return data;
 }
 
-Example *example_new_init(char const * const string) {
-	Example *data;
+String *string_new_init(char const * const string) {
+	String *data;
 	
-	data = malloc(sizeof(Example));
-	Example_construct_init(data, string);
+	data = malloc(sizeof(String));
+	String_construct_init(data, string);
 
 	return data;
 }
 
-Example *example_delete(Example *data) {
+String *string_delete(String *data) {
 	if (data) {
-		Example_destruct(data);
+		String_destruct(data);
 
 		free(data);
 	}
 	return NULL;
 }
 
-void example_debug_print(Example *data) {
-	printf("%lu: %s\n", data->length, data->string);
+void string_debug_print(String *data) {
+	if (data)
+		printf("%lu: %s\n", data->length, data->string);
+	else 
+		printf("No string available to print\n");
 }
 
-void example_sprintf(Example *data, char const * format, ...) {
+void string_sprintf(String *data, char const * format, ...) {
 	uint64_t length;
 	va_list args;
 
