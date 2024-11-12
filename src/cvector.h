@@ -2,6 +2,9 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 /* Copyright © 2024 David Llewellyn-Jones */
 
+#ifndef __VECTOR_CLASS_H__
+#define __VECTOR_CLASS_H__
+
 #include <stdint.h>
 #include <stdlib.h>
 #include <assert.h>

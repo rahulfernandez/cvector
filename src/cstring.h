@@ -2,8 +2,8 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 /* Copyright © 2024 David Llewellyn-Jones */
 
-#ifndef __EXAMPLE_CLASS_H__
-#define __EXAMPLE_CLASS_H__
+#ifndef __STRING_CLASS_H__
+#define __STRING_CLASS_H__
 
 #include <stdint.h>
 
