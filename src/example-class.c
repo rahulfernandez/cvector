@@ -15,10 +15,11 @@ void Example_construct(Example *data) {
 
 void Example_construct_init(Example *data, char const * const string) {
 	if (data) {
-		data->length = strlen(string);
-		data->string = malloc(sizeof(char) * data->length);
-		strncpy(data->string, string, data->length);
-		data->string[data->length] = 0;
+		const uint64_t length = strlen(string);
+
+		data->length = length;
+		data->string = malloc(sizeof(char) * (length + 1));
+		strncpy(data->string, string, length + 1);
 	}
 }
 
