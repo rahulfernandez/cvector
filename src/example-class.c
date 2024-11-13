@@ -60,7 +60,10 @@ Example *example_delete(Example *data) {
 }
 
 void example_debug_print(Example *data) {
-	printf("%lu: %s\n", data->length, data->string);
+	if (data)
+		printf("%lu: %s\n", data->length, data->string);
+	else
+		printf("Cannot print empty string\n");	
 }
 
 void example_sprintf(Example *data, char const * format, ...) {
